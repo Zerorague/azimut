@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Azimut - Servicios profesionales de topografía y levantamientos">
+    <title>Azimut - Soluciones Topográficas Profesionales</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --text-light: #7f8c8d;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        .navbar {
+            background-color: white !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+        }
+
+        .navbar-brand {
+            max-width: 180px;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--dark-color);
+            margin: 0 8px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--secondary-color);
+        }
+
+        .nav-link.active:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            margin-top: 0;
+        }
+
+        .hero-section_titulo {
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-section_subtitulo {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-section_btn {
+            background-color: var(--accent-color);
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .hero-section_btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .box_logo-img {
+            max-width: 200px;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .services-section {
+            padding: 80px 0;
+        }
+
+        .services-section_titulo {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 50px;
+        }
+
+        .services-section_titulo:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-title {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .about_section {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+
+        .about_section_titulo {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+
+        .about_section_titulo:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+
+        .about_section_text {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .contact_section {
+            padding: 80px 0;
+        }
+
+        .contact_section_titulo {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+
+        .contact_section_titulo:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+
+        .contact-info,
+        .contact-form {
+            padding: 30px;
+            height: 100%;
+        }
+
+        .contact-info i {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            width: 40px;
+            text-align: center;
+        }
+
+        .form-control,
+        .form-select {
+            padding: 12px 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+        }
+
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        .social-icons {
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+            border-color: #2980b9;
+        }
+
+        .text-primary {
+            color: var(--secondary-color) !important;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 60px 0;
+            }
+
+            .hero-section_titulo {
+                font-size: 2.5rem;
+            }
+
+            .hero-section_subtitulo {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header y Navegación -->
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <a class="navbar-brand" href="#inicio">
+                    <img src="logo.png" alt="Azimut Logo" class="img-fluid">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#inicio">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#servicios">Servicios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">Sobre Nosotros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#cotiza">Cotiza</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contacto">Contacto</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sección Hero -->
+    <section id="inicio" class="hero-section">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <img src="logo.png" alt="Azimut Logo" class="box_logo-img mb-4">
+                    <h1 class="hero-section_titulo">Bienvenido a Azimut</h1>
+                    <p class="hero-section_subtitulo">Soluciones topográficas precisas y profesionales para tus
+                        proyectos de construcción e ingeniería</p>
+                    <a href="#contacto" class="hero-section_btn btn btn-primary btn-lg">Contáctanos</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Servicios -->
+    <section id="servicios" class="services-section bg-light">
+        <div class="container">
+            <h2 class="services-section_titulo text-center">Nuestros Servicios</h2>
+
+            <div class="row g-4">
+                <!-- Servicio 1 -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                            class="card-img-top" alt="Levantamientos Topográficos">
+                        <div class="card-body">
+                            <h5 class="card-title">Levantamientos Topográficos</h5>
+                            <p class="card-text">Realizamos levantamientos topográficos precisos y detallados para tus
+                                proyectos de construcción, urbanización y más, utilizando tecnología de última
+                                generación.</p>
+                        </div>
+                        <div class="card-footer bg-transparent border-top-0">
+                            <a href="#contacto" class="btn btn-outline-primary">Más información</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Servicio 2 -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1581093450021-4a7360e9a7f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                            class="card-img-top" alt="Planimetrías">
+                        <div class="card-body">
+                            <h5 class="card-title">Planimetrías y Cartografía</h5>
+                            <p class="card-text">Elaboración de planos detallados y mapas cartográficos para proyectos
+                                arquitectónicos, urbanísticos y de ingeniería con máxima precisión.</p>
+                        </div>
+                        <div class="card-footer bg-transparent border-top-0">
+                            <a href="#contacto" class="btn btn-outline-primary">Más información</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Servicio 3 -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1605106702734-205df224ecce?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                            class="card-img-top" alt="Modelos 3D">
+                        <div class="card-body">
+                            <h5 class="card-title">Modelado 3D y BIM</h5>
+                            <p class="card-text">Creación de modelos tridimensionales y Building Information Modeling
+                                (BIM) para visualización, análisis y gestión de proyectos constructivos.</p>
+                        </div>
+                        <div class="card-footer bg-transparent border-top-0">
+                            <a href="#contacto" class="btn btn-outline-primary">Más información</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="#servicios" class="btn btn-primary px-4">Ver todos nuestros servicios</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Sobre Nosotros -->
+    <section id="about" class="about_section">
+        <div class="container">
+            <h2 class="about_section_titulo text-center">Sobre Nosotros</h2>
+            <p class="about_section_text">
+                En Azimut nos especializamos en brindar soluciones topográficas integrales con los más altos estándares
+                de calidad.
+                Nuestro equipo de profesionales cuenta con más de 15 años de experiencia en el sector, utilizando
+                tecnología de punta
+                para garantizar resultados precisos y confiables en cada proyecto.
+            </p>
+
+            <div class="row mt-5 g-4">
+                <div class="col-md-4 text-center">
+                    <div class="p-4">
+                        <i class="bi bi-award fs-1 text-primary mb-3"></i>
+                        <h3>Experiencia</h3>
+                        <p>Más de 15 años brindando soluciones topográficas a proyectos de diversa envergadura.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 text-center">
+                    <div class="p-4">
+                        <i class="bi bi-gear fs-1 text-primary mb-3"></i>
+                        <h3>Tecnología</h3>
+                        <p>Equipos de última generación para mediciones precisas y resultados confiables.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 text-center">
+                    <div class="p-4">
+                        <i class="bi bi-people fs-1 text-primary mb-3"></i>
+                        <h3>Profesionalismo</h3>
+                        <p>Equipo altamente capacitado y comprometido con la excelencia en cada proyecto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Cotización -->
+    <section id="cotiza" class="py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="mb-4">¿Necesitas una cotización?</h2>
+                    <p class="lead">Envíanos los detalles de tu proyecto y te enviaremos una propuesta personalizada en
+                        menos de 24 horas.</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> Respuesta rápida</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> Precios competitivos
+                        </li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> Asesoría profesional
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="bg-white p-4 rounded shadow-sm">
+                        <h3 class="h4 mb-4">Solicita tu cotización</h3>
+                        <form>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Nombre completo" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" placeholder="Correo electrónico" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="tel" class="form-control" placeholder="Teléfono">
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="4" placeholder="Describe tu proyecto"
+                                    required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Enviar solicitud</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Contacto -->
+    <section id="contacto" class="contact_section">
+        <div class="container">
+            <h2 class="contact_section_titulo text-center">Contáctanos</h2>
+            <p class="contact_section_text text-center mb-5">Estamos listos para ayudarte con tu proyecto. Contáctanos
+                para más información.</p>
+
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="contact-info">
+                        <h3 class="h4 mb-4">Información de Contacto</h3>
+
+                        <div class="d-flex align-items-start mb-4">
+                            <i class="bi bi-telephone me-3 mt-1"></i>
+                            <div>
+                                <h4 class="h6 mb-1">Teléfono</h4>
+                                <p class="mb-0">+56 9 6610 9875</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start mb-4">
+                            <i class="bi bi-envelope me-3 mt-1"></i>
+                            <div>
+                                <h4 class="h6 mb-1">Email</h4>
+                                <p class="mb-0">azimutando@gmail.com</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start mb-4">
+                            <i class="bi bi-geo-alt me-3 mt-1"></i>
+                            <div>
+                                <h4 class="h6 mb-1">Dirección</h4>
+                                <p class="mb-0">Plaza de Armas de Linares, Linares, Chile</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start">
+                            <i class="bi bi-clock me-3 mt-1"></i>
+                            <div>
+                                <h4 class="h6 mb-1">Horario de Atención</h4>
+                                <p class="mb-0">Lunes a Viernes: 8:30 - 18:00 hrs<br>Sábado: 10:00 - 14:00 hrs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="contact-form">
+                        <h3 class="h4 mb-4">Envía un Mensaje</h3>
+                        <form>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Nombre completo" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" placeholder="Correo electrónico" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="tel" class="form-control" placeholder="Teléfono (opcional)">
+                            </div>
+                            <div class="mb-3">
+                                <select class="form-select">
+                                    <option selected>Selecciona un asunto</option>
+                                    <option value="consulta">Consulta General</option>
+                                    <option value="soporte">Soporte Técnico</option>
+                                    <option value="cotizacion">Cotización</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="5" placeholder="Escribe tu mensaje aquí..."
+                                    required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="bi bi-send me-2"></i> Enviar Mensaje
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-5">
+                <div class="ratio ratio-16x9">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12935.959665730756!2d-71.6080007!3d-35.8492508!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9665f5684ed3626f%3A0xde95d0069b8f58a3!2sPlaza%20de%20Armas%20de%20Linares!5e0!3m2!1ses!2scl!4v1750199469530!5m2!1ses!2scl"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <img src="logo.png" alt="Azimut Logo" class="mb-3"
+                        style="max-width: 180px; filter: brightness(0) invert(1);">
+                    <p>Soluciones topográficas profesionales con tecnología de punta y atención personalizada.</p>
+                </div>
+
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="mb-3">Enlaces Rápidos</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#inicio" class="text-white text-decoration-none">Inicio</a></li>
+                        <li class="mb-2"><a href="#servicios" class="text-white text-decoration-none">Servicios</a></li>
+                        <li class="mb-2"><a href="#about" class="text-white text-decoration-none">Sobre Nosotros</a>
+                        </li>
+                        <li class="mb-2"><a href="#cotiza" class="text-white text-decoration-none">Cotiza</a></li>
+                        <li><a href="#contacto" class="text-white text-decoration-none">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4">
+                    <h5 class="mb-3">Redes Sociales</h5>
+                    <div class="social-icons">
+                        <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-whatsapp"></i></a>
+                    </div>
+
+                    <div class="mt-4">
+                        <a href="tel:+56966109875" class="text-white text-decoration-none">
+                            <i class="bi bi-telephone me-2"></i> +56 9 6610 9875
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-4 bg-light">
+
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 Azimut. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Smooth scrolling para enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Cambiar navbar al hacer scroll
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+    </script>
+</body>
+
+</html>
