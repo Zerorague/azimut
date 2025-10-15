@@ -23,11 +23,13 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+
 
 
 </head>
 
-<body>
+<body id="top">
     <!-- Header y Navegación -->
     <header class="sticky-top">
         <nav class="navbar navbar-expand-lg navbar-light">
@@ -44,7 +46,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#inicio">Inicio</a>
+                            <a class="nav-link" href="#top">Inicio</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#servicios">Servicios</a>
@@ -85,54 +87,22 @@
             <h2 class="services-section_titulo text-center">Nuestros Servicios</h2>
 
             <div class="row g-4">
+                {% for servicio in servicios %}
                 <!-- Servicio 1 -->
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                        <img src="{{ servicio.imagen.url }}"
                             class="card-img-top" alt="Levantamientos Topográficos">
                         <div class="card-body">
-                            <h5 class="card-title">Levantamientos Topográficos</h5>
-                            <p class="card-text">Realizamos levantamientos topográficos precisos y detallados para tus
-                                proyectos de construcción, urbanización y más, utilizando tecnología de última
-                                generación.</p>
+                            <h5 class="card-title">{{ servicio.nombre|capfirst }}</h5>
+                            <p class="card-text">{{ servicio.descripcion }}</p>
                         </div>
                         <div class="card-footer bg-transparent border-top-0">
                             <a href="#contacto" class="btn btn-outline-primary">Más información</a>
                         </div>
                     </div>
                 </div>
-
-                <!-- Servicio 2 -->
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                            class="card-img-top" alt="Planimetrías">
-                        <div class="card-body">
-                            <h5 class="card-title">Planimetrías y Cartografía</h5>
-                            <p class="card-text">Elaboración de planos detallados y mapas cartográficos para proyectos
-                                arquitectónicos, urbanísticos y de ingeniería con máxima precisión.</p>
-                        </div>
-                        <div class="card-footer bg-transparent border-top-0">
-                            <a href="#contacto" class="btn btn-outline-primary">Más información</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Servicio 3 -->
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="https://images.unsplash.com/photo-1605106702734-205df224ecce?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                            class="card-img-top" alt="Modelos 3D">
-                        <div class="card-body">
-                            <h5 class="card-title">Modelado 3D y BIM</h5>
-                            <p class="card-text">Creación de modelos tridimensionales y Building Information Modeling
-                                (BIM) para visualización, análisis y gestión de proyectos constructivos.</p>
-                        </div>
-                        <div class="card-footer bg-transparent border-top-0">
-                            <a href="#contacto" class="btn btn-outline-primary">Más información</a>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
 
             <div class="text-center mt-5">
@@ -146,11 +116,7 @@
         <div class="container">
             <h2 class="about_section_titulo text-center">Sobre Nosotros</h2>
             <p class="about_section_text">
-                En Azimut nos especializamos en brindar soluciones topográficas integrales con los más altos estándares
-                de calidad.
-                Nuestro equipo de profesionales cuenta con más de 15 años de experiencia en el sector, utilizando
-                tecnología de punta
-                para garantizar resultados precisos y confiables en cada proyecto.
+                {{ about_text }}
             </p>
 
             <div class="row mt-5 g-4">
@@ -158,7 +124,7 @@
                     <div class="p-4">
                         <i class="bi bi-award fs-1 text-primary mb-3"></i>
                         <h3>Experiencia</h3>
-                        <p>Más de 15 años brindando soluciones topográficas a proyectos de diversa envergadura.</p>
+                        <p>Más de {{ anio_experiencia }} años brindando soluciones topográficas a proyectos de diversa envergadura.</p>
                     </div>
                 </div>
 
@@ -355,7 +321,7 @@
             <hr class="my-4 bg-light">
 
             <div class="text-center">
-                <p class="mb-0">&copy; 2025 Azimut. Todos los derechos reservados.</p>
+                <p class="mb-0">&copy; <span id="year"></span> Azimut. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
@@ -364,6 +330,16 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
+        // Actualizar año en el footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+        // Activar enlace activo en la navegación
+        nav_links = document.querySelectorAll('.nav-link');
+        nav_links.forEach(link => {
+            link.addEventListener('click', () => {
+                nav_links.forEach(nav => nav.classList.remove('active'));
+                link.classList.add('active');
+            });
+        });
         // Smooth scrolling para enlaces internos
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
