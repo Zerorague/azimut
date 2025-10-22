@@ -1,4 +1,5 @@
 {% load static %}
+{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="es">
 
@@ -71,7 +72,7 @@
         <div class="container text-center">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <img src="{% static 'img/logo.png' %}" alt="Azimut Logo" class="box_logo-img mb-4">
+                    
                     <h1 class="hero-section_titulo">Bienvenido a Azimut</h1>
                     <p class="hero-section_subtitulo">Soluciones topográficas precisas y profesionales para tus
                         proyectos de construcción e ingeniería</p>
@@ -97,9 +98,7 @@
                             <h5 class="card-title">{{ servicio.nombre|capfirst }}</h5>
                             <p class="card-text">{{ servicio.descripcion }}</p>
                         </div>
-                        <div class="card-footer bg-transparent border-top-0">
-                            <a href="#contacto" class="btn btn-outline-primary">Más información</a>
-                        </div>
+                       
                     </div>
                 </div>
                 {% endfor %}
@@ -167,20 +166,9 @@
                 <div class="col-lg-6">
                     <div class="bg-white p-4 rounded shadow-sm">
                         <h3 class="h4 mb-4">Solicita tu cotización</h3>
-                        <form>
-                            <div class="mb-3">
-                                <input type="text" class="form-control" placeholder="Nombre completo" required>
-                            </div>
-                            <div class="mb-3">
-                                <input type="email" class="form-control" placeholder="Correo electrónico" required>
-                            </div>
-                            <div class="mb-3">
-                                <input type="tel" class="form-control" placeholder="Teléfono">
-                            </div>
-                            <div class="mb-3">
-                                <textarea class="form-control" rows="4" placeholder="Describe tu proyecto"
-                                    required></textarea>
-                            </div>
+                        <form method="post" action="{% url 'inicio' %}">
+                            {% csrf_token %}
+                            {{ form|crispy }}
                             <button type="submit" class="btn btn-primary w-100">Enviar solicitud</button>
                         </form>
                     </div>
@@ -330,6 +318,35 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
+        //obtener regiones
+        fetch('/api/regiones/')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            }).catch(error => console.error('Error fetching regions:', error));
+        //obtener comunas por region
+        fetch('/api/comunas/Maule/')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            }).catch(error => console.error('Error fetching comunas:', error));
+        
+
+
+        //fix acordion collapse on click outside
+        document.addEventListener('click', function (event) {
+            var isClickInside = document.querySelector('.navbar-toggler').contains(event.target);
+
+            if (!isClickInside) {
+                var accordionItems = document.querySelectorAll('.navbar-collapse');
+                accordionItems.forEach(function (item) {
+                    var bsCollapse = new bootstrap.Collapse(item, {
+                        toggle: false
+                    });
+                    bsCollapse.hide();
+                });
+            }
+        });
         // Actualizar año en el footer
         document.getElementById('year').textContent = new Date().getFullYear();
         // Activar enlace activo en la navegación

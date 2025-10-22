@@ -18,12 +18,14 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from inicio.views import index
+from inicio.views import index, obtener_regiones, obtener_comunas_por_region
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',index, name='inicio')
+    path('',index, name='inicio'),
+    path('api/regiones/', obtener_regiones, name='obtener_regiones'),
+    path('api/comunas/<str:region>/', obtener_comunas_por_region, name='obtener_comunas_por_region'),
 ]
 
 if settings.DEBUG:
