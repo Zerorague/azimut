@@ -95,27 +95,26 @@
     <section id="servicios" class="services-section bg-light">
         <div class="container">
             <h2 class="services-section_titulo text-center">Servicios</h2>
-
+    
             <div class="row g-4">
                 {% for servicio in servicios %}
                 <!-- Servicio 1 -->
                 <div class="col-md-4">
-                    <div class="card">
+                    <div class="card h-100"> <!-- Agregar h-100 para que todas las tarjetas tengan la misma altura -->
                         <img src="{{ servicio.imagen.url }}" class="card-img-top" alt="Levantamientos Topográficos">
-                        <div class="card-body">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <!-- Flex para centrado vertical -->
                             <h5 class="card-title">{{ servicio.nombre|capfirst }}</h5>
-                            <div class="d-flex justify-content-center align-items-center">
-                                <p class="card-text servicio_descripcion">{{ servicio.descripcion }}</p>
-
+                            <div class="d-flex justify-content-center align-items-center flex-grow-1">
+                                <!-- Flex-grow para ocupar espacio disponible -->
+                                <p class="card-text servicio_descripcion text-center mb-0">{{ servicio.descripcion }}</p>
                             </div>
-                            
                         </div>
-
                     </div>
                 </div>
                 {% endfor %}
             </div>
-
+    
             <div class="text-center mt-5">
                 <a href="#servicios" class="btn btn-primary px-4">Todos los servicios</a>
             </div>
