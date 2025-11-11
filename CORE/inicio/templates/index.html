@@ -94,7 +94,7 @@
     <!-- Sección de Servicios -->
     <section id="servicios" class="services-section bg-light">
         <div class="container">
-            <h2 class="services-section_titulo text-center">Nuestros Servicios</h2>
+            <h2 class="services-section_titulo text-center">Servicios</h2>
 
             <div class="row g-4">
                 {% for servicio in servicios %}
@@ -104,7 +104,11 @@
                         <img src="{{ servicio.imagen.url }}" class="card-img-top" alt="Levantamientos Topográficos">
                         <div class="card-body">
                             <h5 class="card-title">{{ servicio.nombre|capfirst }}</h5>
-                            <p class="card-text servicio_descripcion">{{ servicio.descripcion }}</p>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <p class="card-text servicio_descripcion">{{ servicio.descripcion }}</p>
+
+                            </div>
+                            
                         </div>
 
                     </div>
