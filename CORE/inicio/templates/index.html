@@ -95,29 +95,60 @@
     <section id="servicios" class="services-section bg-light">
         <div class="container">
             <h2 class="services-section_titulo text-center">Servicios</h2>
-    
-            <div class="row g-4">
-                {% for servicio in servicios %}
-                <!-- Servicio 1 -->
-                <div class="col-md-4">
-                    <div class="card h-100"> <!-- Agregar h-100 para que todas las tarjetas tengan la misma altura -->
-                        <img src="{{ servicio.imagen.url }}" class="card-img-top" alt="Levantamientos Topográficos">
-                        <div class="card-body d-flex flex-column justify-content-center">
-                            <!-- Flex para centrado vertical -->
-                            <h5 class="card-title">{{ servicio.nombre|capfirst }}</h5>
-                            <div class="d-flex justify-content-center align-items-center flex-grow-1">
-                                <!-- Flex-grow para ocupar espacio disponible -->
-                                <p class="card-text servicio_descripcion mb-1">{{ servicio.descripcion }}</p>
-                            </div>
+
+            <!-- Carrusel de Servicios -->
+            <div id="serviciosCarousel" class="carousel slide" data-bs-ride="carousel">
+                <!-- Indicadores -->
+                <div class="carousel-indicators">
+                    {% for servicio in servicios %}
+                    <button type="button" data-bs-target="#serviciosCarousel" data-bs-slide-to="{{ forloop.counter0 }}"
+                        class="{% if forloop.first %}active{% endif %}"
+                        aria-current="{% if forloop.first %}true{% endif %}"
+                        aria-label="Servicio {{ forloop.counter }}"></button>
+                    {% endfor %}
+                </div>
+
+                <!-- Contenido del Carrusel -->
+                <div class="carousel-inner">
+                    {% for servicio in servicios %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}" data-bs-interval="5000">
+                        <div class="row justify-content-center">
+                            <!-- Mostrar 3 servicios a la vez en pantallas grandes -->
+                            {% with start_index=forloop.counter0 %}
+                            {% for i in "123" %}
+                            {% with servicio_index=start_index|add:forloop.counter0 %}
+                            {% if servicio_index < servicios.count %} {% with
+                                servicio_actual=servicios|slice:servicio_index|first %} <div
+                                class="col-lg-4 col-md-6 mb-4">
+                                <div class="card h-100 mx-2">
+                                    <img src="{{ servicio_actual.imagen.url }}" class="card-img-top"
+                                        alt="{{ servicio_actual.nombre }}" style="height: 200px; object-fit: cover;">
+                                    <div class="card-body d-flex flex-column justify-content-center">
+                                        <h5 class="card-title text-center">{{ servicio_actual.nombre|capfirst }}</h5>
+                                        <div class="d-flex justify-content-center align-items-center flex-grow-1">
+                                            <p class="card-text servicio_descripcion text-center mb-0">
+                                                {{ servicio_actual.descripcion }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
+                        {% endwith %}
+                        {% endif %}
+                        {% endwith %}
+                        {% endfor %}
+                        {% endwith %}
                     </div>
                 </div>
                 {% endfor %}
             </div>
-    
-            <div class="text-center mt-5">
-                <a href="#servicios" class="btn btn-primary px-4">Todos los servicios</a>
-            </div>
+
+            <!-- Controles del Carrusel - ELIMINADOS -->
+        </div>
+
+        <div class="text-center mt-5">
+            <a href="#cotiza" class="btn btn-primary px-4">Cotiza conmigo</a>
+        </div>
         </div>
     </section>
 
@@ -131,10 +162,11 @@
 
             <h2 class="about_section_titulo text-center">Sobre Mí</h2>
             <p class="about_section_text">
-                {{ about_text }} 
+                {{ about_text }}
             </p>
 
-            <a class="mt-3 btn btn-primary fw-bold" href="https://linkedin.com/in/julio-san-martin-batarce-010670169" target="_blank" rel="noopener noreferrer">Linkedin</a>
+            <a class="mt-3 btn btn-primary fw-bold" href="https://linkedin.com/in/julio-san-martin-batarce-010670169"
+                target="_blank" rel="noopener noreferrer">Linkedin</a>
 
             <div class="row mt-5 g-4">
                 <div class="col-md-4 text-center">
@@ -273,9 +305,9 @@
             <div class="row">
                 <div class="col-lg-4 mb-4 mb-lg-0">
                     <div class="d-flex flex-column justify-content-center align-items-center">
-                    <span class="fw-bold fs-1 my-1">JSMB <i class="fa-solid fa-check-double"></i></span>
-                    <small class="text-muted">Topógrafo | Geomensor | Informático</small>
-                </div>
+                        <span class="fw-bold fs-1 my-1">JSMB <i class="fa-solid fa-check-double"></i></span>
+                        <small class="text-muted">Topógrafo | Geomensor | Informático</small>
+                    </div>
                     <p>Soluciones topográficas profesionales con tecnología de punta y atención personalizada.</p>
                 </div>
 
@@ -294,8 +326,9 @@
                 <div class="col-lg-4">
                     <h5 class="mb-3">Redes Sociales</h5>
                     <div class="social-icons">
-                        <a href="https://linkedin.com/in/julio-san-martin-batarce-010670169" class="text-white me-3" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a>
-                        <a href="#" class="text-white"><i class="bi bi-whatsapp"></i></a>
+                        <a href="https://linkedin.com/in/julio-san-martin-batarce-010670169" class="text-white me-3"
+                            target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://wa.link/blyqrt" class="text-white"><i class="bi bi-whatsapp"></i></a>
                     </div>
 
                     <div class="mt-4">
@@ -462,6 +495,6 @@
         {% endfor %}
 
     </script>
-    </body>
+</body>
 
 </html>
