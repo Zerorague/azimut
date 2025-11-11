@@ -114,6 +114,10 @@ h6 {
   margin-bottom: 50px;
 }
 
+.servicio_descripcion {
+  text-align: justify;
+}
+
 .services-section_titulo:after {
   content: "";
   position: absolute;
