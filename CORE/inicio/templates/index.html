@@ -91,66 +91,64 @@
         </div>
     </section>
 
-    <!-- Sección de Servicios -->
-    <section id="servicios" class="services-section bg-light">
-        <div class="container">
-            <h2 class="services-section_titulo text-center">Servicios</h2>
+<!-- Sección de Servicios -->
+<section id="servicios" class="services-section bg-light">
+    <div class="container">
+        <h2 class="services-section_titulo text-center">Servicios</h2>
 
-            <!-- Carrusel de Servicios -->
-            <div id="serviciosCarousel" class="carousel slide" data-bs-ride="carousel">
-                <!-- Indicadores -->
-                <div class="carousel-indicators">
-                    {% for servicio in servicios %}
-                    <button type="button" data-bs-target="#serviciosCarousel" data-bs-slide-to="{{ forloop.counter0 }}"
-                        class="{% if forloop.first %}active{% endif %}"
-                        aria-current="{% if forloop.first %}true{% endif %}"
-                        aria-label="Servicio {{ forloop.counter }}"></button>
-                    {% endfor %}
-                </div>
+        <!-- Carrusel de Servicios -->
+        <div id="serviciosCarousel" class="carousel slide" data-bs-ride="carousel">
+            <!-- Indicadores -->
+            <div class="carousel-indicators">
+                {% for servicio in servicios %}
+                <button type="button" data-bs-target="#serviciosCarousel" data-bs-slide-to="{{ forloop.counter0 }}"
+                    class="{% if forloop.first %}active{% endif %}"
+                    aria-current="{% if forloop.first %}true{% endif %}"
+                    aria-label="Servicio {{ forloop.counter }}"></button>
+                {% endfor %}
+            </div>
 
-                <!-- Contenido del Carrusel -->
-                <div class="carousel-inner">
-                    {% for servicio in servicios %}
-                    <div class="carousel-item {% if forloop.first %}active{% endif %}" data-bs-interval="5000">
-                        <div class="row justify-content-center">
-                            <!-- Mostrar 3 servicios a la vez en pantallas grandes -->
-                            {% with start_index=forloop.counter0 %}
+            <!-- Contenido del Carrusel -->
+            <div class="carousel-inner">
+                {% for servicio in servicios %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}" data-bs-interval="5000">
+                    <div class="row justify-content-center">
+                        <!-- Mostrar 3 servicios a la vez en pantallas grandes -->
+                        {% with start_index=forloop.counter0 %}
                             {% for i in "123" %}
-                            {% with servicio_index=start_index|add:forloop.counter0 %}
-                            {% if servicio_index < servicios.count %} {% with
-                                servicio_actual=servicios|slice:servicio_index|first %} <div
-                                class="col-lg-4 col-md-6 mb-4">
-                                <div class="card h-100 mx-2">
-                                    <img src="{{ servicio_actual.imagen.url }}" class="card-img-top"
-                                        alt="{{ servicio_actual.nombre }}" style="height: 200px; object-fit: cover;">
-                                    <div class="card-body d-flex flex-column justify-content-center">
-                                        <h5 class="card-title text-center">{{ servicio_actual.nombre|capfirst }}</h5>
-                                        <div class="d-flex justify-content-center align-items-center flex-grow-1">
-                                            <p class="card-text servicio_descripcion text-center mb-0">
-                                                {{ servicio_actual.descripcion }}
-                                            </p>
+                                {% with servicio_index=start_index|add:forloop.counter0 %}
+                                    {% if servicio_index < servicios.count %}
+                                        {% with servicio_actual=servicios|slice:servicio_index|first %}
+                                        <div class="col-lg-4 col-md-6 mb-4">
+                                            <div class="card h-100 mx-2">
+                                                <img src="{{ servicio_actual.imagen.url }}" class="card-img-top" 
+                                                     alt="{{ servicio_actual.nombre }}" style="height: 200px; object-fit: cover;">
+                                                <div class="card-body d-flex flex-column justify-content-center">
+                                                    <h5 class="card-title text-center">{{ servicio_actual.nombre|capfirst }}</h5>
+                                                    <div class="d-flex justify-content-center align-items-center flex-grow-1">
+                                                        <p class="card-text servicio_descripcion text-center mb-0">
+                                                            {{ servicio_actual.descripcion }}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                        </div>
-                        {% endwith %}
-                        {% endif %}
-                        {% endwith %}
-                        {% endfor %}
+                                        {% endwith %}
+                                    {% endif %}
+                                {% endwith %}
+                            {% endfor %}
                         {% endwith %}
                     </div>
                 </div>
                 {% endfor %}
             </div>
-
-            <!-- Controles del Carrusel - ELIMINADOS -->
         </div>
 
         <div class="text-center mt-5">
             <a href="#cotiza" class="btn btn-primary px-4">Cotiza conmigo</a>
         </div>
-        </div>
-    </section>
+    </div>
+</section>
 
     <!-- Sección Sobre Nosotros -->
     <section id="about" class="about_section">
